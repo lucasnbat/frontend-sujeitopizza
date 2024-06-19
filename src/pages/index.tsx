@@ -1,7 +1,7 @@
 import Head from "next/head";
-import styles from '../../styles/Home.module.scss';
+import styles from '../../styles/home.module.scss'
 import Image from "next/image";
-import logoImg from '../../public/logo.svg';
+import logoImg from '../../public/logo-cooperativa-3.png';
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 
@@ -9,10 +9,11 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>SujeitoPizza - Faça seu login</title>
+        <title>COAPortal - Faça seu login</title>
       </Head>
       <div className={styles.containerCenter}>
-        <Image src={logoImg} alt="SujeitoPizza" />
+
+        <Image className={styles.image} src={logoImg} alt="SujeitoPizza" />
 
         <div className={styles.login}>
           <form>
@@ -26,7 +27,7 @@ export default function Home() {
               placeholder="Digite sua senha"
             />
 
-            <Button 
+            <Button
               type='submit'
               loading={false}
 
@@ -34,6 +35,9 @@ export default function Home() {
               Acessar
             </Button>
           </form>
+          <a className={styles.text}>
+            Não possui uma conta? Cadastre-se!
+          </a>
         </div>
       </div>
     </>
