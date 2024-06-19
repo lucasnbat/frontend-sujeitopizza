@@ -3,6 +3,7 @@ import styles from '../../styles/Home.module.scss';
 import Image from "next/image";
 import logoImg from '../../public/logo.svg';
 import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
 
 export default function Home() {
   return (
@@ -24,6 +25,14 @@ export default function Home() {
               type="password"
               placeholder="Digite sua senha"
             />
+
+            <Button 
+              type='submit'
+              loading={false}
+
+            >
+              Acessar
+            </Button>
           </form>
         </div>
       </div>
