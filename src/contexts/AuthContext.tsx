@@ -49,7 +49,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const isAuthenticated = !!user;
 
     async function signIn({ email, password }: SignInProps) {
-        alert('Dados: ' + email + ' ' + password)
+        try {
+            // const response = await 
+        } catch (error) {
+            
+        }
     }
 
     return (

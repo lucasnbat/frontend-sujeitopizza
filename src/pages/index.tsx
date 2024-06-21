@@ -23,8 +23,8 @@ export default function Home() {
     event.preventDefault();
 
     let data = {
-      email: 'teste@teste.com',
-      password: '123123'
+      email,
+      password,
     }
 
     signIn(data);
