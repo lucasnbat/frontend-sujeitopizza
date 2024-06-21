@@ -21,3 +21,7 @@ afetada pela config. scss
     * Head da aplicação
     * Body com o Main e o snextcript que renderiza a aplicação
 
+# Contextos
+
+* Utilize o contexto rodeando o _app, pois ele é o arquivo principal da aplicação em nextjs
+
