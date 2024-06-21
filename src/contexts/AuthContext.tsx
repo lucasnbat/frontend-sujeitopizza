@@ -1,9 +1,12 @@
+import Router from 'next/router';
+import { destroyCookie } from 'nookies';
 import { createContext, ReactNode, useState } from 'react';
 
 type AuthContextData = {
     user: UserProps;
     isAuthenticated: boolean;
     signIn: (credentials: SignInProps) => Promise<void>;
+    signOut: () => void;
 }
 
 type UserProps = {
@@ -24,17 +27,29 @@ type AuthProviderProps = {
     children: ReactNode; // aceita qualquer elemento filho do react, que está dentro
 }
 
+export function signOut() {
+    try {
+        // destroi o token do cookie
+        destroyCookie(undefined, '@COAportal.token');
+
+        // redireciona para a home
+        Router.push('/');
+    } catch (error) {
+        console.log('Erro ao deslogar: ', error)
+    }
+}
+
 // componente que vai prover as info e os metodos no global
 export function AuthProvider({ children }: AuthProviderProps) {
 
     // estado do usuário (com id, nome, email...)
-    const [user, setUser] = useState<UserProps>({ id: '', name: '', email: ''});
+    const [user, setUser] = useState<UserProps>({ id: '', name: '', email: '' });
 
     // se o usuário existe, ele está autenticado, retorna true
     const isAuthenticated = !!user;
 
-    async function signIn() {
-        alert('signIn')
+    async function signIn({ email, password }: SignInProps) {
+        alert('Dados: ' + email + ' ' + password)
     }
 
     return (
@@ -43,7 +58,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         <AuthContext.Provider value={{
             user,
             isAuthenticated,
-            signIn
+            signIn,
+            signOut
         }}>
             {children}
         </AuthContext.Provider>

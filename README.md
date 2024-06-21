@@ -25,3 +25,7 @@ afetada pela config. scss
 
 * Utilize o contexto rodeando o _app, pois ele é o arquivo principal da aplicação em nextjs
 
+# Mais anotações
+
+* npm install axios nookies jwt-decode => api, trabalhar com cookies e jwt
+
