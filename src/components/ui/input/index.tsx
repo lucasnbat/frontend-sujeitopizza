@@ -1,10 +1,13 @@
 import styles from './styles.module.scss';
-import { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
+import { InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react';
 
 // config de tipagem do input
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> { }
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> { }
+
+// Adiciona a tipagem para o select
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> { }
 
 // pega todas as prop no ...rest e passa para o input
 
@@ -20,5 +23,12 @@ export function Input({ ...rest }: InputProps) {
 export function Textarea({ ...rest }: TextareaProps) {
     return (
         <textarea className={styles.input} {...rest}></textarea>
+    );
+}
+
+// Cria um novo componente Select
+export function Select({ ...rest }: SelectProps) {
+    return (
+        <select className={styles.select} {...rest}></select>
     );
 }

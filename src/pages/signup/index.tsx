@@ -1,12 +1,19 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from '../../../styles/home.module.scss';
+import styles2 from '../../components/ui/input/styles.module.scss'
 import logoImg from '../../../public/logo-cooperativa-3.png';
-import { Input } from "../../components/ui/input";
+import { Input, Select } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import Link from "next/link";
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/src/contexts/AuthContext";
+import { api } from "@/src/services/apiClient";
+
+interface Department {
+    id: string,
+    departmentName: string,
+}
 
 export default function SignUp() {
     const { signUp } = useContext(AuthContext);
@@ -16,6 +23,20 @@ export default function SignUp() {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [departmentId, setDepartmentId] = useState('');
+    const [departments, setDepartments] = useState<Department[]>([]);
+
+    useEffect(() => {
+        async function fetchDepartments() {
+            try {
+                const response = await api.get('/departments'); // Busca os departamentos
+                setDepartments(response.data); // Armazena os departamentos no estado
+            } catch (error) {
+                console.log('Erro ao buscar departamentos: ', error);
+            }
+        }
+
+        fetchDepartments();
+    }, []);
 
     async function handleSignUp(event: FormEvent) {
         event.preventDefault();
@@ -73,12 +94,25 @@ export default function SignUp() {
                             onChange={(e) => { setPassword(e.target.value) }}
                         />
 
-                        <Input
+                        {/* <Input
                             type="text"
                             placeholder="Digite o ID do seu departamento"
                             value={departmentId}
                             onChange={(e) => { setDepartmentId(e.target.value) }}
-                        />
+                        /> */}
+
+                        <Select 
+                            
+                            value={departmentId}
+                            onChange={(e) => setDepartmentId(e.target.value)}
+                        >
+                            <option value="" disabled>Selecione seu departamento</option>
+                            {departments.map((department) => (
+                                <option key={department.id} value={department.id}>
+                                    {department.departmentName}
+                                </option>
+                            ))}
+                        </Select>
 
                         <Button
                             type='submit'
