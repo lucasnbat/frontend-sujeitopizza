@@ -20,18 +20,16 @@ export default function Home() {
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
 
-    // let data = {
-    //   email,
-    //   password,
-    // }
+    if (email === '' || password === '') {
+      alert('Preencha todos os campos');
+      return;
+    }
 
-    // console.log(email, password)
-
-    // Adicione logs para verificar se os valores estão corretos
-    // console.log('Email:', email);
-    // console.log('Password:', password);
+    setLoading(true);
 
     await signIn({ email, password });
+
+    setLoading(false);
   }
 
   return (
@@ -65,8 +63,7 @@ export default function Home() {
 
             <Button
               type='submit'
-              loading={false}
-
+              loading={loading}
             >
               Acessar
             </Button>

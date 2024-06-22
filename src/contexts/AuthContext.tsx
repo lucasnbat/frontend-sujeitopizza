@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import { destroyCookie } from 'nookies';
+import { destroyCookie, setCookie } from 'nookies';
 import { createContext, ReactNode, useState } from 'react';
 
 import { api } from '../services/apiClient';
@@ -57,9 +57,24 @@ export function AuthProvider({ children }: AuthProviderProps) {
             const response = await api.post('/login', {
                 email,
                 password
+            });
+
+            const { id, name, token } = response.data;
+
+            setCookie(undefined, '@COAportal.token', token, {
+                maxAge: 60 * 60 * 24 * 30, // 30 days para expirar
+                path: "/" // quais caminhos (no caso todos) que acessam o cookie
             })
 
-            console.log(response.data)
+            // seta o usuário
+            setUser({ id, name, email });
+
+            // passar o token para todas as requisições
+            api.defaults.headers['Authorization'] = `Bearer ${token}`;
+
+            // redireciona para o dashboard
+            Router.push('/dashboard');
+
         } catch (error) {
             console.log('Erro ao logar: ', error)
         }
