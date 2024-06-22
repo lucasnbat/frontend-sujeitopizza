@@ -9,25 +9,29 @@ import { FormEvent, useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 export default function Home() {
-  // contexto
-  const { signIn } = useContext(AuthContext);
-
   // estados
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-
+  // contexto
+  const { signIn } = useContext(AuthContext);
 
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
 
-    let data = {
-      email,
-      password,
-    }
+    // let data = {
+    //   email,
+    //   password,
+    // }
 
-    signIn(data);
+    // console.log(email, password)
+
+    // Adicione logs para verificar se os valores estão corretos
+    // console.log('Email:', email);
+    // console.log('Password:', password);
+
+    await signIn({ email, password });
   }
 
   return (
@@ -41,7 +45,9 @@ export default function Home() {
         <Image className={styles.image} src={logoImg} alt="SujeitoPizza" />
 
         <div className={styles.login}>
+
           <h1>Bem vindo ao COAPortal!</h1>
+
           <form onSubmit={handleLogin}>
             <Input
               type="text"

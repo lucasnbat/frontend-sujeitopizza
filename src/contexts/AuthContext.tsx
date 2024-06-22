@@ -2,6 +2,8 @@ import Router from 'next/router';
 import { destroyCookie } from 'nookies';
 import { createContext, ReactNode, useState } from 'react';
 
+import { api } from '../services/apiClient';
+
 type AuthContextData = {
     user: UserProps;
     isAuthenticated: boolean;
@@ -44,15 +46,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     // estado do usuário (com id, nome, email...)
     const [user, setUser] = useState<UserProps>({ id: '', name: '', email: '' });
-
+    
     // se o usuário existe, ele está autenticado, retorna true
     const isAuthenticated = !!user;
 
     async function signIn({ email, password }: SignInProps) {
         try {
-            // const response = await 
+            console.log(email, password);
+
+            const response = await api.post('/login', {
+                email,
+                password
+            })
+
+            console.log(response.data)
         } catch (error) {
-            
+            console.log('Erro ao logar: ', error)
         }
     }
 
