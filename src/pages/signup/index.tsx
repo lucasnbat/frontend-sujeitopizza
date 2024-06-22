@@ -5,23 +5,38 @@ import logoImg from '../../../public/logo-cooperativa-3.png';
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
+import { AuthContext } from "@/src/contexts/AuthContext";
 
 export default function SignUp() {
+    const { signUp } = useContext(AuthContext);
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [departmentId, setDepartmentId] = useState('');
 
     async function handleSignUp(event: FormEvent) {
         event.preventDefault();
 
-        if (name === '' || email === '' || password === ''){
-            alert ('Preencha todos os campos');
+        if (name === '' || email === '' || password === '' || departmentId === '') {
+            alert('Preencha todos os campos');
             return;
         }
 
         setLoading(true);
+
+        let data = {
+            name,
+            email,
+            password,
+            departmentId,
+        }
+
+        await signUp(data);
+
+        setLoading(false);
     }
 
     return (
@@ -56,6 +71,13 @@ export default function SignUp() {
                             placeholder="Digite sua senha"
                             value={password}
                             onChange={(e) => { setPassword(e.target.value) }}
+                        />
+
+                        <Input
+                            type="text"
+                            placeholder="Digite o ID do seu departamento"
+                            value={departmentId}
+                            onChange={(e) => { setDepartmentId(e.target.value) }}
                         />
 
                         <Button

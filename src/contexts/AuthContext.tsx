@@ -9,6 +9,7 @@ type AuthContextData = {
     isAuthenticated: boolean;
     signIn: (credentials: SignInProps) => Promise<void>;
     signOut: () => void;
+    signUp: (credentials: SignUpProps) => Promise<void>;
 }
 
 type UserProps = {
@@ -20,6 +21,13 @@ type UserProps = {
 type SignInProps = {
     email: string;
     password: string;
+}
+
+type SignUpProps = {
+    name: string,
+    email: string,
+    password: string,
+    departmentId: string,
 }
 
 // contexto em si
@@ -46,7 +54,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     // estado do usuário (com id, nome, email...)
     const [user, setUser] = useState<UserProps>({ id: '', name: '', email: '' });
-    
+
     // se o usuário existe, ele está autenticado, retorna true
     const isAuthenticated = !!user;
 
@@ -80,6 +88,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
     }
 
+    async function signUp({ name, email, password, departmentId }: SignUpProps) {
+        try {
+            const response = await api.post('/users', {
+                name, 
+                email, 
+                password,
+                departmentId
+            });
+
+            console.log('Cadastrado com sucesso!');
+
+            Router.push('/');
+        } catch (error) {
+
+        }
+    }
+
     return (
         /* Abaixo significa que o provider vai rodear toda a aplicação para fornecer os valores globalmente */
 
@@ -87,7 +112,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
             user,
             isAuthenticated,
             signIn,
-            signOut
+            signOut,
+            signUp
         }}>
             {children}
         </AuthContext.Provider>
