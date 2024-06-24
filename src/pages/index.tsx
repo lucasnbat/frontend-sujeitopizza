@@ -7,6 +7,7 @@ import { Button } from "../components/ui/button";
 import Link from "next/link";
 import { FormEvent, useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export default function Home() {
   // estados
@@ -21,7 +22,7 @@ export default function Home() {
     event.preventDefault();
 
     if (email === '' || password === '') {
-      alert('Preencha todos os campos');
+      toast.warning('Preencha todos os campos');
       return;
     }
 

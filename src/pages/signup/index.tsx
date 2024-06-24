@@ -9,6 +9,7 @@ import Link from "next/link";
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/src/contexts/AuthContext";
 import { api } from "@/src/services/apiClient";
+import { toast } from "react-toastify";
 
 interface Department {
     id: string,
@@ -42,7 +43,7 @@ export default function SignUp() {
         event.preventDefault();
 
         if (name === '' || email === '' || password === '' || departmentId === '') {
-            alert('Preencha todos os campos');
+            toast.warning('Preencha todos os campos');
             return;
         }
 
