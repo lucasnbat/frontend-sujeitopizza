@@ -1,9 +1,10 @@
 import Router from 'next/router';
-import { destroyCookie, setCookie } from 'nookies';
-import { createContext, ReactNode, useState } from 'react';
+import { destroyCookie, parseCookies, setCookie } from 'nookies';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 
 import { api } from '../services/apiClient';
 import { toast } from 'react-toastify';
+import { parseCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 type AuthContextData = {
     user: UserProps;
@@ -59,6 +60,27 @@ export function AuthProvider({ children }: AuthProviderProps) {
     // se o usuário existe, ele está autenticado, retorna true
     const isAuthenticated = !!user;
 
+    useEffect(() => {
+        // tentar pegar algo do cookie
+        const { '@COAportal.token': token } = parseCookies();
+
+        if (token) {
+            // se o token estiver fraudado, o isAuthenticated da api vai apitar e fazer cair no catch
+            api.get('/me').then(response => {
+                const { id, name, email } = response.data;
+
+                setUser({
+                    id,
+                    name,
+                    email,
+                });
+            })
+                .catch(() => {
+                    signOut();
+                })
+        }
+    }, [])
+
     async function signIn({ email, password }: SignInProps) {
         try {
             console.log(email, password);
@@ -96,8 +118,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     async function signUp({ name, email, password, departmentId }: SignUpProps) {
         try {
             const response = await api.post('/users', {
-                name, 
-                email, 
+                name,
+                email,
                 password,
                 departmentId
             });
