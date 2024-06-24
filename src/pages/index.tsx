@@ -9,6 +9,10 @@ import { FormEvent, useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 
+// trabalhando com server side props
+import { GetServerSideProps } from "next";
+import { canSSRGuest } from "../utils/canSSRGuest";
+
 export default function Home() {
   // estados
   const [email, setEmail] = useState('');
@@ -79,3 +83,12 @@ export default function Home() {
     </>
   );
 }
+
+// Primeiro passa por aqui antes de renderizar tudo que está em cima
+// Se o user tentar acessar o login estando logado, vai ir pra dashboard (canSSRGuest faz isso)
+export const getServerSideProps = canSSRGuest(async (ctx) => {
+  
+  return {
+    props: {}
+  }
+})
