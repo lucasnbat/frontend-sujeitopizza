@@ -4,7 +4,6 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 
 import { api } from '../services/apiClient';
 import { toast } from 'react-toastify';
-import { parseCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 type AuthContextData = {
     user: UserProps;

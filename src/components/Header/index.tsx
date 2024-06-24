@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { AuthContext } from '@/src/contexts/AuthContext';
 
 export function Header() {
-    // const { signOut } = useContext(AuthContext);
+    const { signOut } = useContext(AuthContext);
 
     return (
         <header className={styles.headerContainer}>
@@ -25,7 +25,7 @@ export function Header() {
                         <span>Meu Perfil</span>
                     </Link>
 
-                    <button>
+                    <button onClick={signOut}>
                         <FiLogOut
                             color='#fff'
                             size={24}
