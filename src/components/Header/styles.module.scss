@@ -16,22 +16,33 @@
 .menuNav {
     display: flex;
     align-items: center;
-
     color: var(--white);
     padding: 0 0.5rem;
+    gap: 2rem;
 
     span:hover {
         text-decoration:underline;
     }
 
     button {
-        margin-left: 2rem;
+        // margin-left: 2rem;
+        // margin-right: 2rem;
         background: transparent;
         border: 0;
         transition: transform 0.8s;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
+        }
+
+        &:first-child {
+            background-color: var(--green-900);
+            padding: 0.3rem;
+            border-radius: 0.5rem;
         }
     }
 }
