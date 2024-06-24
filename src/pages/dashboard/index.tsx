@@ -1,10 +1,20 @@
+import { Header } from "@/src/components/Header"
 import { canSSRAuth } from "@/src/utils/canSSRAuth"
+import Head from "next/head"
 
 export default function Dashboard() {
     return (
-        <div>
-            <h1>Dashboard</h1>
-        </div>
+        <>
+            <Head>
+                <title>Painel - COAPortal</title>
+            </Head>
+
+            <div>
+                <Header />
+
+                <h1>Painel</h1>
+            </div>
+        </>
     )
 }
 
