@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 import { FormEvent, useState } from 'react';
 import { setupAPIClient } from '@/src/services/api';
 import { toast } from 'react-toastify';
+import { canSSRAuth } from '@/src/utils/canSSRAuth';
 
 export default function Department() {
     const [departmentName, setDepartmentName] = useState('');
@@ -58,3 +59,12 @@ export default function Department() {
         </>
     );
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+
+    return {
+        props: {
+
+        }
+    }
+})
