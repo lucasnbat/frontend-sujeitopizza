@@ -2,6 +2,7 @@ import Head from 'next/head';
 import styles from './styles.module.scss';
 import { canSSRAuth } from '@/src/utils/canSSRAuth';
 import { Header } from '@/src/components/Header';
+import { FiUpload } from 'react-icons/fi';
 
 export default function Payslip() {
     return (
@@ -26,6 +27,19 @@ export default function Payslip() {
                                 Funcionário 2
                             </option>
                         </select>
+
+                        <label className={styles.labelDoc}>
+                            <span>
+                                <FiUpload
+                                    size={25}
+                                    color='#fff'
+                                />
+                            </span>
+                            <input
+                                type="file"
+                                accept=".pdf, .docx, .odt"
+                            />
+                        </label>
 
                         <input
                             type="text"
