@@ -21,13 +21,15 @@ export function Header() {
                 </Link>
 
                 <nav className={styles.menuNav}>
-                    <button className={styles.addButton}>
-                        <FiPlus
-                            color='#fff'
-                            size={24}
-                        />
-                        Novo
-                    </button>
+                    <Link href='/payslip'>
+                        <button className={styles.addButton}>
+                            <FiPlus
+                                color='#fff'
+                                size={24}
+                            />
+                            Novo
+                        </button>
+                    </Link>
 
                     <Link href='/department'>
                         <span>Departamentos</span>
