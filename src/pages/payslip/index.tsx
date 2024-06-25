@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import styles from './styles.module.scss';
+import { canSSRAuth } from '@/src/utils/canSSRAuth';
 
 export default function Payslip() {
     return (
@@ -14,3 +15,10 @@ export default function Payslip() {
         </>
     )
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+
+    return {
+        props: {}
+    }
+})
