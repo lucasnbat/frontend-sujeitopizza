@@ -29,6 +29,10 @@ export function Header() {
                         Novo
                     </button>
 
+                    <Link href='/department'>
+                        <span>Departamentos</span>
+                    </Link>
+
                     <Link href='/dashboard'>
                         <span>Dashboard</span>
                     </Link>
