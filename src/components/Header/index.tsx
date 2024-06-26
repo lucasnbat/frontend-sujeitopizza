@@ -22,13 +22,13 @@ export function Header() {
                 </Link>
 
                 <nav className={styles.menuNav}>
-                    <Link href='/payslip'>
+                    <Link href='/import'>
                         <button className={styles.addButton}>
                             <FiPlus
                                 color='#fff'
                                 size={24}
                             />
-                            Novo
+                            Importar
                         </button>
                     </Link>
 

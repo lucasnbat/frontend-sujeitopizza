@@ -36,4 +36,5 @@ afetada pela config. scss
 [ ] Automação para que, no botão de upload de arquivo, carregue os dados do holerite;
     [ ] Campo ID de holerite (visual)
 [ ] Macro-automação: carregar um unico doc PDF que vai gerar todos os usuários com holerites para envio;
+    [ ] Carregar importação POR COMPETÊNCIA;
 

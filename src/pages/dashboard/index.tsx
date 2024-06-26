@@ -2,7 +2,8 @@ import { Header } from "@/src/components/Header"
 import { canSSRAuth } from "@/src/utils/canSSRAuth"
 import Head from "next/head"
 import styles from './styles.module.scss'
-import { FiEdit, FiRefreshCcw, FiSend } from "react-icons/fi"
+import { FiEdit, FiRefreshCcw, FiSend, FiUpload } from "react-icons/fi"
+import Link from "next/link"
 
 export default function Dashboard() {
     return (
@@ -28,13 +29,18 @@ export default function Dashboard() {
                         <section className={styles.payslipItem}>
                             <button>
                                 <div className={styles.tag}></div>
-                                <span>Id</span>
+                                <span>ID</span>
                                 <span>Status</span>
-                                <span>Competência</span>
-                                <span className={styles.spanColaborador}>Colaborador</span>
+                                <span className={styles.spanCompetencia}>Competência</span>
+                                <span>Colaborador</span>
                                 <span className={styles.actions}>
                                     <span>
-                                        <FiEdit size={19} />
+                                        <Link href='/payslip'>
+                                            <FiEdit size={19} />
+                                        </Link>
+                                    </span>
+                                    <span>
+                                        <FiUpload size={19} />
                                     </span>
                                     <span>
                                         <FiSend size={19} />
@@ -45,13 +51,18 @@ export default function Dashboard() {
                         <section className={styles.payslipItem}>
                             <button>
                                 <div className={styles.tag}></div>
-                                <span>Id</span>
+                                <span>ID</span>
                                 <span>Status</span>
-                                <span>Competência</span>
-                                <span className={styles.spanColaborador}>Colaborador</span>
+                                <span className={styles.spanCompetencia}>Competência</span>
+                                <span>Colaborador</span>
                                 <span className={styles.actions}>
                                     <span>
-                                        <FiEdit size={19} />
+                                        <Link href='/payslip'>
+                                            <FiEdit size={19} />
+                                        </Link>
+                                    </span>
+                                    <span>
+                                        <FiUpload size={19} />
                                     </span>
                                     <span>
                                         <FiSend size={19} />
@@ -62,13 +73,18 @@ export default function Dashboard() {
                         <section className={styles.payslipItem}>
                             <button>
                                 <div className={styles.tag}></div>
-                                <span>Id</span>
+                                <span>ID</span>
                                 <span>Status</span>
-                                <span>Competência</span>
-                                <span className={styles.spanColaborador}>Colaborador</span>
+                                <span className={styles.spanCompetencia}>Competência</span>
+                                <span>Colaborador</span>
                                 <span className={styles.actions}>
                                     <span>
-                                        <FiEdit size={19} />
+                                        <Link href='/payslip'>
+                                            <FiEdit size={19} />
+                                        </Link>
+                                    </span>
+                                    <span>
+                                        <FiUpload size={19} />
                                     </span>
                                     <span>
                                         <FiSend size={19} />
@@ -79,13 +95,18 @@ export default function Dashboard() {
                         <section className={styles.payslipItem}>
                             <button>
                                 <div className={styles.tag}></div>
-                                <span>Id</span>
+                                <span>ID</span>
                                 <span>Status</span>
-                                <span>Competência</span>
-                                <span className={styles.spanColaborador}>Colaborador</span>
+                                <span className={styles.spanCompetencia}>Competência</span>
+                                <span>Colaborador</span>
                                 <span className={styles.actions}>
                                     <span>
-                                        <FiEdit size={19} />
+                                        <Link href='/payslip'>
+                                            <FiEdit size={19} />
+                                        </Link>
+                                    </span>
+                                    <span>
+                                        <FiUpload size={19} />
                                     </span>
                                     <span>
                                         <FiSend size={19} />
