@@ -29,3 +29,11 @@ afetada pela config. scss
 
 * npm install axios nookies jwt-decode => api, trabalhar com cookies e jwt
 
+## Requisitos
+
+[ ] Dashboard contendo cada registro, um usuário-colaborador.
+    [ ] Botões: upload de arquivo, enviar e editar;
+[ ] Automação para que, no botão de upload de arquivo, carregue os dados do holerite;
+    [ ] Campo ID de holerite (visual)
+[ ] Macro-automação: carregar um unico doc PDF que vai gerar todos os usuários com holerites para envio;
+
