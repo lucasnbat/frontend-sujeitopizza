@@ -21,7 +21,7 @@
     gap: 2rem;
 
     span:hover {
-        text-decoration:underline;
+        text-decoration: underline;
     }
 
     button {
@@ -48,5 +48,20 @@
                 margin-right: 0.2rem;
             }
         }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .menuNav {
+        gap: 1rem;
+    }
+
+    .headerContent {
+        display: flex;
+        justify-content: center;
+    }
+
+    .logo {
+        display: none;
     }
 }

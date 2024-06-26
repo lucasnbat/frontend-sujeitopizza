@@ -2,7 +2,7 @@ import { Header } from "@/src/components/Header"
 import { canSSRAuth } from "@/src/utils/canSSRAuth"
 import Head from "next/head"
 import styles from './styles.module.scss'
-import { FiRefreshCcw } from "react-icons/fi"
+import { FiEdit, FiRefreshCcw, FiSend } from "react-icons/fi"
 
 export default function Dashboard() {
     return (
@@ -28,10 +28,72 @@ export default function Dashboard() {
                         <section className={styles.payslipItem}>
                             <button>
                                 <div className={styles.tag}></div>
-                                <span>Holerite 37289</span>
+                                <span>Id</span>
+                                <span>Status</span>
+                                <span>Competência</span>
+                                <span className={styles.spanColaborador}>Colaborador</span>
+                                <span className={styles.actions}>
+                                    <span>
+                                        <FiEdit size={19} />
+                                    </span>
+                                    <span>
+                                        <FiSend size={19} />
+                                    </span>
+                                </span>
                             </button>
                         </section>
-                        
+                        <section className={styles.payslipItem}>
+                            <button>
+                                <div className={styles.tag}></div>
+                                <span>Id</span>
+                                <span>Status</span>
+                                <span>Competência</span>
+                                <span className={styles.spanColaborador}>Colaborador</span>
+                                <span className={styles.actions}>
+                                    <span>
+                                        <FiEdit size={19} />
+                                    </span>
+                                    <span>
+                                        <FiSend size={19} />
+                                    </span>
+                                </span>
+                            </button>
+                        </section>
+                        <section className={styles.payslipItem}>
+                            <button>
+                                <div className={styles.tag}></div>
+                                <span>Id</span>
+                                <span>Status</span>
+                                <span>Competência</span>
+                                <span className={styles.spanColaborador}>Colaborador</span>
+                                <span className={styles.actions}>
+                                    <span>
+                                        <FiEdit size={19} />
+                                    </span>
+                                    <span>
+                                        <FiSend size={19} />
+                                    </span>
+                                </span>
+                            </button>
+                        </section>
+                        <section className={styles.payslipItem}>
+                            <button>
+                                <div className={styles.tag}></div>
+                                <span>Id</span>
+                                <span>Status</span>
+                                <span>Competência</span>
+                                <span className={styles.spanColaborador}>Colaborador</span>
+                                <span className={styles.actions}>
+                                    <span>
+                                        <FiEdit size={19} />
+                                    </span>
+                                    <span>
+                                        <FiSend size={19} />
+                                    </span>
+                                </span>
+                            </button>
+                        </section>
+
                     </article>
                 </main>
             </div>

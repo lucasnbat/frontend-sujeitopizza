@@ -17,6 +17,7 @@ export function Header() {
                         src={logo}
                         width={60}
                         alt='logo'
+                        className={styles.logo}
                     />
                 </Link>
 

@@ -1,5 +1,5 @@
 .container {
-    max-width: 720px;
+    max-width: 850px;
     margin: 4rem auto;
     padding: 0 2rem;
 
@@ -23,16 +23,14 @@
 
 .listPayslips {
     display: flex;
-    gap: 1rem;
     flex-direction: column;
     margin: 1rem 0;
-    
 }
 
 .payslipItem {
     display: flex;
     background-color: var(--dark-600);
-    // margin-bottom: 1rem;
+    margin-bottom: 1rem;
     align-items: center;
     border-radius: 0.3rem;
 
@@ -44,7 +42,24 @@
         height: 60px;
         align-items: center;
         display: flex;
-        
+        gap: 2rem;
+    }
+}
+
+.actions {
+    margin-left: 15rem;
+    display: flex;
+    gap: 0.9rem;
+    transition: all 0.5s;
+
+    span {
+        opacity: 0.7;
+
+        &:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            color: var(--green-800);
+        }
     }
 }
 
@@ -54,4 +69,32 @@
     height: 60px;
     border-radius: 0.3rem 0 0 0.3rem;
     margin-right: 1rem;
+}
+
+@media screen and (max-width:800px) {
+    .listPayslips {
+        button {
+            .spanColaborador {
+                display: none;
+            }
+
+            .actions {
+                margin-left: 22rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:550px) {
+    .listPayslips {
+        button {
+            .spanColaborador {
+                display: none;
+            }
+
+            .actions {
+                margin-left: 3.5rem;
+            }
+        }
+    }
 }
