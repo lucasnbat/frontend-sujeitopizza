@@ -4,7 +4,7 @@ import { AuthTokenError } from './errors/AuthTokenError';
 import { signOut } from '../contexts/AuthContext';
 
 // tem contexto fornecido que será usado para extrair os cookies
-export function setupAPIClient(ctx = undefined) {
+export function setupAPIClient(ctx: any) {
     let cookies = parseCookies(ctx);
 
     const api = axios.create({

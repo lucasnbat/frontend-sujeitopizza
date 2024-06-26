@@ -5,10 +5,33 @@ import { Header } from '@/src/components/Header';
 import { FiCheckCircle, FiUpload } from 'react-icons/fi';
 import { ChangeEvent, useState } from 'react';
 import { toast } from 'react-toastify';
+import { setupAPIClient } from '@/src/services/api';
 
-export default function Payslip() {
+type PayslipProps = {
+    status: boolean;
+    observation: string;
+    competenciaPayslips: string;
+}
+
+type ItemProps = {
+    id: string;
+    userName: string;
+    userEmail: string;
+    department: string | string[];
+    payslip: PayslipProps[];
+}
+
+interface UserListProps {
+    userList: ItemProps[]
+}
+
+export default function Payslip({ userList }: UserListProps) {
     const [docUrl, setDocUrl] = useState(''); // url da foto
     const [docFile, setDocFile] = useState<File | null>(null); // foto em si
+    const [users, setUsers] = useState(userList || []);
+    const [userSelected, setUserSelected] = useState();
+
+    console.log(userList);
 
     function handleFile(e: ChangeEvent<HTMLInputElement>) {
         console.log(e.target.files);
@@ -27,6 +50,11 @@ export default function Payslip() {
         toast.success('Arquivo anexado!');
     }
 
+    function handleChangeCategory(event: ChangeEvent<HTMLSelectElement>) {
+        // console.log('teste')
+        console.log(event.target.value);
+    }
+
     return (
         <>
             <Head>
@@ -41,13 +69,14 @@ export default function Payslip() {
 
                     <form className={styles.form}>
 
-                        <select>
-                            <option>
-                                Funcionário 1
-                            </option>
-                            <option>
-                                Funcionário 2
-                            </option>
+                        <select value={userSelected} onChange={handleChangeCategory}>
+                            {users.map((item, index) => {
+                                return (
+                                    <option key={item.id} value={index}>
+                                        {item.userName}
+                                    </option>
+                                )
+                            })}
                         </select>
 
                         <label className={styles.labelDoc}>
@@ -108,7 +137,16 @@ export default function Payslip() {
 
 export const getServerSideProps = canSSRAuth(async (ctx) => {
 
+    const apiClient = setupAPIClient(ctx);
+
+    const response = await apiClient.get('/users');
+
+    console.log(response.data);
+
     return {
-        props: {}
+        // envia como propriedade
+        props: {
+            userList: response.data
+        }
     }
-})
+});
