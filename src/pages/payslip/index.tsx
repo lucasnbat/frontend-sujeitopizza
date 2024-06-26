@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import { canSSRAuth } from '@/src/utils/canSSRAuth';
 import { Header } from '@/src/components/Header';
 import { FiCheckCircle, FiUpload } from 'react-icons/fi';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { toast } from 'react-toastify';
 import { setupAPIClient } from '@/src/services/api';
 
@@ -29,9 +29,11 @@ export default function Payslip({ userList }: UserListProps) {
     const [docUrl, setDocUrl] = useState(''); // url da foto
     const [docFile, setDocFile] = useState<File | null>(null); // foto em si
     const [users, setUsers] = useState(userList || []);
-    const [userSelected, setUserSelected] = useState();
+    const [userSelected, setUserSelected] = useState<number>(0);
+    const [competenciaPayslips, setCompetenciaPayslips] = useState('');
+    const [observation, setObservation] = useState('');
 
-    console.log(userList);
+    console.log(users[userSelected].id);
 
     function handleFile(e: ChangeEvent<HTMLInputElement>) {
         console.log(e.target.files);
@@ -50,9 +52,41 @@ export default function Payslip({ userList }: UserListProps) {
         toast.success('Arquivo anexado!');
     }
 
-    function handleChangeCategory(event: ChangeEvent<HTMLSelectElement>) {
-        // console.log('teste')
-        console.log(event.target.value);
+    function handleChangeUserSelected(event: ChangeEvent<HTMLSelectElement>) {
+        setUserSelected(Number(event.target.value))
+
+    }
+
+    async function handleRegister(event: FormEvent) {
+        event.preventDefault();
+
+        try {
+            const data = new FormData(); //cria multipartFormData
+
+            if (observation === '' || competenciaPayslips === '' || docFile === null || userSelected === null) {
+                toast.error('Preencha todos os campos!');
+                return;
+            }
+
+            data.append('observation', observation);
+            data.append('competenciaPayslips', competenciaPayslips);
+            data.append('userId', users[userSelected].id);
+            data.append('file', docFile);
+
+            const apiClient = setupAPIClient();
+            await apiClient.post('/payslips', data);
+
+            toast.success('Holerite cadastrado com sucesso!');
+
+            setObservation('');
+            setCompetenciaPayslips('');
+            setUserSelected(0);
+
+        } catch (err) {
+            console.log(err);
+
+            toast.error('Erro ao cadastrar!');
+        }
     }
 
     return (
@@ -67,9 +101,10 @@ export default function Payslip({ userList }: UserListProps) {
                 <main className={styles.container}>
                     <h1>Novo holerite</h1>
 
-                    <form className={styles.form}>
+                    <form className={styles.form} onSubmit={handleRegister}>
 
-                        <select value={userSelected} onChange={handleChangeCategory}>
+                        <select value={userSelected} onChange={handleChangeUserSelected}>
+                            <option value='' disabled>Selecione um usuário</option>
                             {users.map((item, index) => {
                                 return (
                                     <option key={item.id} value={index}>
@@ -113,11 +148,15 @@ export default function Payslip({ userList }: UserListProps) {
                             type="text"
                             placeholder="Digite a competência do holerite"
                             className={styles.input}
+                            value={competenciaPayslips}
+                            onChange={(e) => setCompetenciaPayslips(e.target.value)}
                         />
 
                         <textarea
                             placeholder="Adicione uma observação"
                             className={styles.input}
+                            value={observation}
+                            onChange={(e) => setObservation(e.target.value)}
                         />
 
                         <button
@@ -142,6 +181,8 @@ export const getServerSideProps = canSSRAuth(async (ctx) => {
     const response = await apiClient.get('/users');
 
     console.log(response.data);
+
+
 
     return {
         // envia como propriedade

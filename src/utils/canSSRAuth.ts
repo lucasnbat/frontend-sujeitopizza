@@ -15,6 +15,8 @@ import { AuthTokenError } from '../services/errors/AuthTokenError';
 
 export function canSSRAuth<P extends { [key: string]: any }>(fn: GetServerSideProps<P>) {
     return async (ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<P>> => {
+        console.log(ctx);
+        
         const cookies = parseCookies(ctx);
 
         const token = cookies['@COAportal.token'];
