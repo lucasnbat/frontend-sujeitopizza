@@ -30,9 +30,9 @@ export default function Dashboard() {
                             <button>
                                 <div className={styles.tag}></div>
                                 <span>ID</span>
-                                <span>Status</span>
-                                <span className={styles.spanCompetencia}>Competência</span>
-                                <span>Colaborador</span>
+                                <span className={styles.spanStatus}>Status</span>
+                                <span>Competência</span>
+
                                 <span className={styles.actions}>
                                     <span>
                                         <Link href='/payslip'>
@@ -40,7 +40,33 @@ export default function Dashboard() {
                                         </Link>
                                     </span>
                                     <span>
-                                        <FiUpload size={19} />
+                                        <Link href='/payslip'>
+                                            <FiUpload size={19} />
+                                        </Link>
+                                    </span>
+
+                                    <span>
+                                        <FiSend size={19} />
+                                    </span>
+                                </span>
+                            </button>
+                        </section>
+                        <section className={styles.payslipItem}>
+                            <button>
+                                <div className={styles.tag}></div>
+                                <span>ID</span>
+                                <span className={styles.spanStatus}>Status</span>
+                                <span>Competência</span>
+                                <span className={styles.actions}>
+                                    <span>
+                                        <Link href='/payslip'>
+                                            <FiEdit size={19} />
+                                        </Link>
+                                    </span>
+                                    <span>
+                                        <Link href='/payslip'>
+                                            <FiUpload size={19} />
+                                        </Link>
                                     </span>
                                     <span>
                                         <FiSend size={19} />
@@ -52,9 +78,9 @@ export default function Dashboard() {
                             <button>
                                 <div className={styles.tag}></div>
                                 <span>ID</span>
-                                <span>Status</span>
-                                <span className={styles.spanCompetencia}>Competência</span>
-                                <span>Colaborador</span>
+                                <span className={styles.spanStatus}>Status</span>
+                                <span>Competência</span>
+
                                 <span className={styles.actions}>
                                     <span>
                                         <Link href='/payslip'>
@@ -62,7 +88,9 @@ export default function Dashboard() {
                                         </Link>
                                     </span>
                                     <span>
-                                        <FiUpload size={19} />
+                                        <Link href='/payslip'>
+                                            <FiUpload size={19} />
+                                        </Link>
                                     </span>
                                     <span>
                                         <FiSend size={19} />
@@ -74,9 +102,9 @@ export default function Dashboard() {
                             <button>
                                 <div className={styles.tag}></div>
                                 <span>ID</span>
-                                <span>Status</span>
-                                <span className={styles.spanCompetencia}>Competência</span>
-                                <span>Colaborador</span>
+                                <span className={styles.spanStatus}>Status</span>
+                                <span>Competência</span>
+
                                 <span className={styles.actions}>
                                     <span>
                                         <Link href='/payslip'>
@@ -84,29 +112,9 @@ export default function Dashboard() {
                                         </Link>
                                     </span>
                                     <span>
-                                        <FiUpload size={19} />
-                                    </span>
-                                    <span>
-                                        <FiSend size={19} />
-                                    </span>
-                                </span>
-                            </button>
-                        </section>
-                        <section className={styles.payslipItem}>
-                            <button>
-                                <div className={styles.tag}></div>
-                                <span>ID</span>
-                                <span>Status</span>
-                                <span className={styles.spanCompetencia}>Competência</span>
-                                <span>Colaborador</span>
-                                <span className={styles.actions}>
-                                    <span>
                                         <Link href='/payslip'>
-                                            <FiEdit size={19} />
+                                            <FiUpload size={19} />
                                         </Link>
-                                    </span>
-                                    <span>
-                                        <FiUpload size={19} />
                                     </span>
                                     <span>
                                         <FiSend size={19} />

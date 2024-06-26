@@ -22,7 +22,7 @@ export function Header() {
                 </Link>
 
                 <nav className={styles.menuNav}>
-                    <Link href='/import'>
+                    <Link href='/payslip'>
                         <button className={styles.addButton}>
                             <FiPlus
                                 color='#fff'

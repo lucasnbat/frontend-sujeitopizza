@@ -92,14 +92,14 @@ export default function Payslip({ userList }: UserListProps) {
     return (
         <>
             <Head>
-                <title>Novo holerite</title>
+                <title>Nova publicação</title>
             </Head>
 
             <div>
                 <Header />
 
                 <main className={styles.container}>
-                    <h1>Novo holerite</h1>
+                    <h1>Nova publicação</h1>
 
                     <form className={styles.form} onSubmit={handleRegister}>
 

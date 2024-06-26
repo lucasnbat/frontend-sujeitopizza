@@ -42,12 +42,12 @@
         height: 60px;
         align-items: center;
         display: flex;
-        gap: 2rem;
+        gap: 1.3rem;
     }
 }
 
 .actions {
-    margin-left: 14rem;
+    margin-left: 29rem;
     display: flex;
     gap: 0.9rem;
     transition: all 0.5s;
@@ -63,6 +63,10 @@
     }
 }
 
+.spanStatus {
+    display: none;
+}
+
 .tag {
     width: 9px;
     background-color: var(--green-800);
@@ -75,7 +79,7 @@
     .listPayslips {
         button {
             .actions {
-                margin-left: 11.5rem;
+                margin-left: 26.5rem;
             }
         }
     }
@@ -84,12 +88,12 @@
 @media screen and (max-width:550px) {
     .listPayslips {
         button {
-            .spanCompetencia {
+            .spanStatus {
                 display: none;
             }
 
             .actions {
-                margin-left: 2.5rem;
+                margin-left: 10rem;
             }
         }
     }

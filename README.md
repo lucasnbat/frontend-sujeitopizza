@@ -31,6 +31,8 @@ afetada pela config. scss
 
 ## Requisitos
 
+[ ] Usar a cor do div de holerite como Status;
+
 [ ] Dashboard contendo cada registro, um usuário-colaborador.
     [ ] Botões: upload de arquivo, enviar e editar;
 [ ] Automação para que, no botão de upload de arquivo, carregue os dados do holerite;
