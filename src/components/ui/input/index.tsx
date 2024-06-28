@@ -1,5 +1,9 @@
-import styles from './styles.module.scss';
-import { InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react';
+import styles from "./styles.module.scss";
+import {
+  InputHTMLAttributes,
+  SelectHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react";
 
 // config de tipagem do input
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> { }
@@ -15,20 +19,14 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> { }
 // de input para o componente
 
 export function Input({ ...rest }: InputProps) {
-    return (
-        <input className={styles.input} {...rest} />
-    );
+  return <input className={styles.input} {...rest} />;
 }
 
 export function Textarea({ ...rest }: TextareaProps) {
-    return (
-        <textarea className={styles.input} {...rest}></textarea>
-    );
+  return <textarea className={styles.input} {...rest}></textarea>;
 }
 
 // Cria um novo componente Select
 export function Select({ ...rest }: SelectProps) {
-    return (
-        <select className={styles.select} {...rest}></select>
-    );
+  return <select className={styles.select} {...rest}></select>;
 }

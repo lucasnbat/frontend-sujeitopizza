@@ -2,11 +2,11 @@ import "../../styles/globals.scss";
 
 import type { AppProps } from "next/app";
 
-import { AuthProvider } from '../contexts/AuthContext';
+import { AuthProvider } from "../contexts/AuthContext";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -14,6 +14,5 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />;
       <ToastContainer autoClose={1000} />
     </AuthProvider>
-  )
-
+  );
 }

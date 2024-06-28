@@ -1,7 +1,7 @@
 import Head from "next/head";
-import styles from '../../styles/home.module.scss'
+import styles from "../../styles/home.module.scss";
 import Image from "next/image";
-import logoImg from '../../public/logo-cooperativa-3.png';
+import logoImg from "../../public/logo-cooperativa-3.png";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import Link from "next/link";
@@ -15,8 +15,8 @@ import { canSSRGuest } from "../utils/canSSRGuest";
 
 export default function Home() {
   // estados
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   // contexto
@@ -25,8 +25,8 @@ export default function Home() {
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
 
-    if (email === '' || password === '') {
-      toast.warning('Preencha todos os campos');
+    if (email === "" || password === "") {
+      toast.warning("Preencha todos os campos");
       return;
     }
 
@@ -44,11 +44,9 @@ export default function Home() {
       </Head>
 
       <div className={styles.containerCenter}>
-
         <Image className={styles.image} src={logoImg} alt="SujeitoPizza" />
 
         <div className={styles.login}>
-
           <h1>Bem vindo ao COAPortal!</h1>
 
           <form onSubmit={handleLogin}>
@@ -66,18 +64,14 @@ export default function Home() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <Button
-              type='submit'
-              loading={loading}
-            >
+            <Button type="submit" loading={loading}>
               Acessar
             </Button>
           </form>
 
-          <Link className={styles.text} href='/signup'>
+          <Link className={styles.text} href="/signup">
             Não possui uma conta? Cadastre-se!
           </Link>
-
         </div>
       </div>
     </>
@@ -87,8 +81,7 @@ export default function Home() {
 // Primeiro passa por aqui antes de renderizar tudo que está em cima
 // Se o user tentar acessar o login estando logado, vai ir pra dashboard (canSSRGuest faz isso)
 export const getServerSideProps = canSSRGuest(async (ctx) => {
-  
   return {
-    props: {}
-  }
-})
+    props: {},
+  };
+});
