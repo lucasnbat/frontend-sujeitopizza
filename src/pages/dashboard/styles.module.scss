@@ -1,5 +1,5 @@
 .container {
-  max-width: 850px;
+  max-width: 950px;
   margin: 4rem auto;
   padding: 0 2rem;
 
@@ -42,15 +42,26 @@
     height: 60px;
     align-items: center;
     display: flex;
-    gap: 1.3rem;
+    gap: 0.3rem;
+    justify-content: left;
   }
 }
 
+.spanIdStyle {
+  width: 350px;
+}
+
+.competenciaStyle {
+  display: flex;
+  width: 200px;
+}
+
 .actions {
-  margin-left: 29rem;
+  margin-left: 11rem;
   display: flex;
   gap: 0.9rem;
   transition: all 0.5s;
+  margin-right: 1rem;
 
   span {
     opacity: 0.7;
