@@ -105,7 +105,7 @@ export default function Payslip({ userList }: UserListProps) {
           <h1>Nova publicação</h1>
 
           <form className={styles.form} onSubmit={handleRegister}>
-            <select value={userSelected} onChange={handleChangeUserSelected}>
+            {/* <select value={userSelected} onChange={handleChangeUserSelected}>
               <option value="" disabled>
                 Selecione um usuário
               </option>
@@ -116,7 +116,7 @@ export default function Payslip({ userList }: UserListProps) {
                   </option>
                 );
               })}
-            </select>
+            </select> */}
 
             <label className={styles.labelDoc}>
               <span>
