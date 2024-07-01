@@ -28,12 +28,13 @@ interface UserListProps {
 export default function Payslip({ userList }: UserListProps) {
   const [docUrl, setDocUrl] = useState(""); // url da foto
   const [docFile, setDocFile] = useState<File | null>(null); // foto em si
-  const [users, setUsers] = useState(userList || []);
-  const [userSelected, setUserSelected] = useState<number>(0);
-  const [competenciaPayslips, setCompetenciaPayslips] = useState("");
+  // const [users, setUsers] = useState(userList || []);
+  // const [userSelected, setUserSelected] = useState<number>(0);
+  const [competenciaPublish, setCompetenciaPublish] = useState("");
   const [observation, setObservation] = useState("");
+  // const [allPublishes, setAllPublishes] = useState([]);
 
-  console.log(users[userSelected].id);
+  // console.log(users[userSelected].id);
 
   function handleFile(e: ChangeEvent<HTMLInputElement>) {
     console.log(e.target.files);
@@ -52,9 +53,9 @@ export default function Payslip({ userList }: UserListProps) {
     toast.success("Arquivo anexado!");
   }
 
-  function handleChangeUserSelected(event: ChangeEvent<HTMLSelectElement>) {
-    setUserSelected(Number(event.target.value));
-  }
+  // function handleChangeUserSelected(event: ChangeEvent<HTMLSelectElement>) {
+  //   setUserSelected(Number(event.target.value));
+  // }
 
   async function handleRegister(event: FormEvent) {
     event.preventDefault();
@@ -64,27 +65,43 @@ export default function Payslip({ userList }: UserListProps) {
 
       if (
         observation === "" ||
-        competenciaPayslips === "" ||
-        docFile === null ||
-        userSelected === null
+        competenciaPublish === "" ||
+        docFile === null
+        // userSelected === null
       ) {
         toast.error("Preencha todos os campos!");
         return;
       }
 
       data.append("observation", observation);
-      data.append("competenciaPayslips", competenciaPayslips);
-      data.append("userId", users[userSelected].id);
+      data.append("competenciaPublish", competenciaPublish);
+      // data.append("userId", users[userSelected].id);
       data.append("file", docFile);
 
       const apiClient = setupAPIClient();
-      await apiClient.post("/payslips", data);
+      await apiClient.post("/createPublish", data);
 
-      toast.success("Holerite cadastrado com sucesso!");
+      const response = await apiClient.get('/getAllPublishes');
+      const allPublishes = response.data;
+
+      if (allPublishes.length === 0) {
+        throw new Error("Nenhuma publicação encontrada!");
+      }
+
+      // Obtém o ID da publicação mais recente
+      const publishId = allPublishes[0].id;
+
+      // Chama a rota split-pdf-all com o ID da publicação
+      const splitData = new FormData();
+      splitData.append("file", docFile);
+      splitData.append("publishId", publishId);
+
+      await apiClient.post("split-pdf-all", splitData);
+      toast.success("Publicação realizada com sucesso!");
 
       setObservation("");
-      setCompetenciaPayslips("");
-      setUserSelected(0);
+      setCompetenciaPublish("");
+      // setUserSelected(0);
     } catch (err) {
       console.log(err);
 
@@ -145,8 +162,8 @@ export default function Payslip({ userList }: UserListProps) {
               type="text"
               placeholder="Digite a competência do holerite"
               className={styles.input}
-              value={competenciaPayslips}
-              onChange={(e) => setCompetenciaPayslips(e.target.value)}
+              value={competenciaPublish}
+              onChange={(e) => setCompetenciaPublish(e.target.value)}
             />
 
             <textarea
