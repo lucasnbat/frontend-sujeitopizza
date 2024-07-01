@@ -15,19 +15,19 @@ type AuthContextData = {
 
 type UserProps = {
     id: string;
-    name: string;
-    email: string;
+    userName: string;
+    userEmail: string;
 };
 
 type SignInProps = {
-    email: string;
-    password: string;
+    userEmail: string;
+    userPassword: string;
 };
 
 type SignUpProps = {
-    name: string;
-    email: string;
-    password: string;
+    userName: string;
+    userEmail: string;
+    userPassword: string;
     departmentId: string;
 };
 
@@ -53,7 +53,7 @@ export function signOut() {
 // componente que vai prover as info e os metodos no global
 export function AuthProvider({ children }: AuthProviderProps) {
     // estado do usuário (com id, nome, email...)
-    const [user, setUser] = useState<UserProps>({ id: "", name: "", email: "" });
+    const [user, setUser] = useState<UserProps>({ id: "", userName: "", userEmail: "" });
 
     // se o usuário existe, ele está autenticado, retorna true
     const isAuthenticated = !!user;
@@ -67,12 +67,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
             api
                 .get("/me")
                 .then((response) => {
-                    const { id, name, email } = response.data;
+                    const { id, userName, userEmail } = response.data;
 
                     setUser({
                         id,
-                        name,
-                        email,
+                        userName,
+                        userEmail,
                     });
                 })
                 .catch(() => {
@@ -81,16 +81,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
     }, []);
 
-    async function signIn({ email, password }: SignInProps) {
+    async function signIn({ userEmail, userPassword }: SignInProps) {
         try {
-            console.log(email, password);
+            console.log(userEmail, userPassword);
 
             const response = await api.post("/login", {
-                email,
-                password,
+                userEmail,
+                userPassword,
             });
 
-            const { id, name, token } = response.data;
+            const { id, userName, token } = response.data;
 
             setCookie(undefined, "@COAportal.token", token, {
                 maxAge: 60 * 60 * 24 * 30, // 30 days para expirar
@@ -98,7 +98,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             });
 
             // seta o usuário
-            setUser({ id, name, email });
+            setUser({ id, userName, userEmail });
 
             // passar o token para todas as requisições
             api.defaults.headers["Authorization"] = `Bearer ${token}`;
@@ -114,12 +114,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
     }
 
-    async function signUp({ name, email, password, departmentId }: SignUpProps) {
+    async function signUp({ userName, userEmail, userPassword, departmentId }: SignUpProps) {
         try {
             const response = await api.post("/users", {
-                name,
-                email,
-                password,
+                userName,
+                userEmail,
+                userPassword,
                 departmentId,
             });
 

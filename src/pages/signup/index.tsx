@@ -19,9 +19,9 @@ interface Department {
 export default function SignUp() {
   const { signUp } = useContext(AuthContext);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setuserPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [departmentId, setDepartmentId] = useState("");
   const [departments, setDepartments] = useState<Department[]>([]);
@@ -42,7 +42,7 @@ export default function SignUp() {
   async function handleSignUp(event: FormEvent) {
     event.preventDefault();
 
-    if (name === "" || email === "" || password === "" || departmentId === "") {
+    if (userName === "" || userEmail === "" || userPassword === "" || departmentId === "") {
       toast.warning("Preencha todos os campos");
       return;
     }
@@ -50,9 +50,9 @@ export default function SignUp() {
     setLoading(true);
 
     let data = {
-      name,
-      email,
-      password,
+      userName,
+      userEmail,
+      userPassword,
       departmentId,
     };
 
@@ -76,27 +76,27 @@ export default function SignUp() {
             <Input
               type="text"
               placeholder="Digite seu nome completo"
-              value={name}
+              value={userName}
               onChange={(e) => {
-                setName(e.target.value);
+                setUserName(e.target.value);
               }}
             />
 
             <Input
               type="text"
               placeholder="Digite seu email corporativo"
-              value={email}
+              value={userEmail}
               onChange={(e) => {
-                setEmail(e.target.value);
+                setUserEmail(e.target.value);
               }}
             />
 
             <Input
               type="password"
               placeholder="Digite sua senha"
-              value={password}
+              value={userPassword}
               onChange={(e) => {
-                setPassword(e.target.value);
+                setuserPassword(e.target.value);
               }}
             />
 

@@ -17,7 +17,7 @@ export default function Dashboard() {
 
                 <main className={styles.container}>
                     <div className={styles.containerHeader}>
-                        <h1>Últimos holerites</h1>
+                        <h1>Últimas publicações</h1>
                         <button>
                             <FiRefreshCcw color="#3fffa3" size={25} />
                         </button>
